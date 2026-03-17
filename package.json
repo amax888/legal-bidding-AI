@@ -1,0 +1,6 @@
+{
+  "name": "legal-bidding-ai-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Frontend + API config only; backend chạy trên Railway/Render"
+}

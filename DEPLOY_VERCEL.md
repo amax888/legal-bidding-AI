@@ -106,6 +106,27 @@ Mở URL này trên trình duyệt: giao diện sẽ gọi API qua `LEGAL_AI_API
 
 ---
 
+## Nếu build báo lỗi "Deployment failed" / "No Python version" / install requirements.txt
+
+Vercel đang cố build project như **Python app** (vì trong repo có `requirements.txt`). Trên Vercel ta **chỉ** deploy frontend tĩnh + `/api/config`, không chạy Python.
+
+**Cách 1 – Đã thêm trong repo (nên có sẵn):**  
+Trong repo đã có `vercel.json` với `"buildCommand": ""`, `"installCommand": ""` và `package.json` để Vercel không chạy pip. Commit + push rồi **Redeploy**.
+
+**Cách 2 – Tắt build Python trên Dashboard:**
+
+1. Vào project trên Vercel → **Settings** → **General**.
+2. Phần **Build & Development Settings** → **Override** (bật override).
+3. Đặt:
+   - **Framework Preset**: `Other`
+   - **Build Command**: để trống (xóa hết) hoặc `echo 'static'`
+   - **Install Command**: để trống (xóa hết)
+4. **Save** → **Deployments** → chọn deployment mới nhất → **Redeploy**.
+
+Sau khi redeploy, build sẽ không còn chạy `pip install` và không báo lỗi Python.
+
+---
+
 ## Kiểm tra sau khi deploy
 
 1. Mở trang Vercel (vd: `https://legal-bidding-ai-xxx.vercel.app`).

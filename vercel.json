@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
   "rewrites": [
     { "source": "/api/config", "destination": "/api/config" },
     { "source": "/", "destination": "/static/index.html" },
