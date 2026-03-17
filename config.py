@@ -17,6 +17,9 @@ class Settings(BaseSettings):
     # OpenAI (tùy chọn - để trống thì dùng trả lời từ ngữ cảnh thuần)
     openai_api_key: str = ""
     
+    # Bảo vệ /api/ingest trên production: đặt key trong .env, gọi kèm header X-API-Key
+    ingest_api_key: str = ""
+    
     model_config = {"env_file": ".env", "extra": "ignore"}
 
 settings = Settings()

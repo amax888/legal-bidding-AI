@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 from typing import List, Optional
 
-from .loader import load_document, list_documents
+from .loader import load_document, list_documents, list_document_urls, load_pdf_from_url
 from .splitter import chunk_document, TextChunk
 from .embedding import embed_texts, embed_query
 
@@ -45,6 +45,18 @@ def build_vector_store_from_documents(
         chunks = chunk_document(
             content,
             source_name=path.name,
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap,
+        )
+        all_chunks.extend(chunks)
+    for url in list_document_urls(documents_dir):
+        content = load_pdf_from_url(url)
+        if not content.strip():
+            continue
+        source_name = url.split("/")[-1] if "/" in url else url
+        chunks = chunk_document(
+            content,
+            source_name=source_name,
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
         )

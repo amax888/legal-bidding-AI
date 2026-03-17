@@ -13,6 +13,7 @@ sentence-transformers>=2.3
 # Document processing
 pypdf>=4.0
 python-docx>=1.1
+requests>=2.28
 
 # LLM (optional: thêm OPENAI_API_KEY vào .env để trả lời chat hay hơn)
 openai>=1.12

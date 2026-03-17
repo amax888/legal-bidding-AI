@@ -1,0 +1,6 @@
+# Mỗi dòng một URL PDF (bỏ qua dòng bắt đầu bằng #)
+# PDF từ Cổng Thông tin điện tử Chính phủ - Nghị định 10/2021 quản lý chi phí đầu tư xây dựng
+https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/02/10.signed.pdf
+https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/01/175_2024_nd-cp_30122024-signed.pdf
+https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/5/105-ndcp.signed.pdf
+https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/12/06-bxd.pdf

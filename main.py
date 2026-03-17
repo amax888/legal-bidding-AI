@@ -2,7 +2,7 @@
 from pathlib import Path
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Header, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -160,8 +160,15 @@ def compliance_density(req: DensityRequest):
     )
 
 @app.post("/api/ingest")
-def ingest():
-    """Xây lại vector store từ thư mục data/documents."""
+def ingest(
+    x_api_key: str | None = Header(None, alias="X-API-Key"),
+    api_key: str | None = Query(None, alias="api_key"),
+):
+    """Xây lại vector store từ thư mục data/documents. Trên VPS nên đặt INGEST_API_KEY trong .env và gửi kèm header X-API-Key."""
+    if settings.ingest_api_key:
+        key = x_api_key or api_key
+        if key != settings.ingest_api_key:
+            raise HTTPException(status_code=403, detail="Thiếu hoặc sai API key")
     try:
         n = build_vector_store_from_documents(
             settings.documents_dir,
