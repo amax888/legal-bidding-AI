@@ -1,0 +1,29 @@
+QUY ĐỊNH VỀ MẬT ĐỘ XÂY DỰNG VÀ HỆ SỐ SỬ DỤNG ĐẤT - TRÍCH YẾU
+Theo QCVN 01:2021/BXD (Quy hoạch xây dựng) và Thông tư 01/2021/TT-BXD
+
+1. Khái niệm
+- Mật độ xây dựng thuần (net): Tỷ lệ diện tích chiếm đất của công trình trên tổng diện tích lô đất (không kể diện tích chiếm đất của các công trình hạ tầng kỹ thuật, cây xanh, sân bãi ngoài trời).
+- Mật độ xây dựng gộp (brutto): Áp dụng cho khu vực có nhiều lô đất; tỷ lệ diện tích chiếm đất của các công trình trên tổng diện tích toàn khu.
+- Hệ số sử dụng đất (FAR): Tỷ lệ tổng diện tích sàn xây dựng (không kể tầng hầm, tầng mái) trên tổng diện tích lô đất.
+
+2. Mật độ xây dựng thuần tối đa (%)
+- Nhà ở riêng lẻ (lô đất ≤ 100 m²): 90%.
+- Lô đất 100–200 m²: 80%.
+- Lô đất 200–300 m²: 70%.
+- Lô đất 300–500 m²: 60%.
+- Lô đất > 500 m²: theo quy chế quy hoạch chi tiết, tối đa không quá 60%.
+
+3. Chiều cao công trình
+- Chiều cao tối đa tính từ mặt đất (hoặc cốt vỉa hè) đến điểm cao nhất (kể cả mái, tum): theo quy hoạch từng khu vực; thường quy định bằng số tầng hoặc mét.
+- Khu vực nội đô: thường 4–5 tầng (12–18 m) hoặc theo đồ án quy hoạch được duyệt.
+- Khu vực ven đô, nông thôn: thường không quá 3–4 tầng trừ khi có quy định riêng.
+
+4. Hệ số sử dụng đất (FAR)
+- FAR tối đa do quy hoạch chi tiết hoặc quy chế quy hoạch quy định; thường trong khoảng 2,0–5,0 tùy loại đất và vị trí.
+- Nhà ở riêng lẻ trong khu vực quy hoạch: FAR thường không quá 3,0–3,5 tùy địa phương.
+
+5. Chỉ giới xây dựng và khoảng lùi
+- Công trình phải đảm bảo khoảng lùi so với chỉ giới đường đỏ theo chiều cao và tuyến đường (2 m, 4 m, 6 m tùy quy định).
+- Mật độ và FAR phải đảm bảo không vượt quá chỉ tiêu được duyệt trong quy hoạch.
+
+Nguồn: QCVN 01:2021/BXD, Thông tư 01/2021/TT-BXD (trích dẫn tham khảo). Cần tra cứu văn bản gốc và quy chế địa phương khi áp dụng.

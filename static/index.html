@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Trợ lý Pháp lý & Đấu thầu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface2: #243044;
+      --text: #e6edf3;
+      --text-muted: #8b9cb6;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #22c55e;
+      --warning: #eab308;
+      --error: #ef4444;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    .app {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 24px 0;
+    }
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      background: var(--surface);
+      padding: 6px;
+      border-radius: var(--radius);
+    }
+    .tabs button {
+      flex: 1;
+      padding: 12px 16px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .tabs button:hover { background: var(--surface2); color: var(--text); }
+    .tabs button.active { background: var(--accent); color: white; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .chat-box {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    #chatMessages {
+      height: 360px;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .msg {
+      margin-bottom: 16px;
+      max-width: 85%;
+    }
+    .msg.user { margin-left: auto; }
+    .msg .bubble {
+      padding: 12px 16px;
+      border-radius: 12px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .msg.user .bubble {
+      background: var(--accent);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+    .msg.bot .bubble {
+      background: var(--surface2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-bottom-left-radius: 4px;
+    }
+    .msg .source {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    .chat-input-wrap {
+      display: flex;
+      gap: 10px;
+      padding: 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    #chatInput {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--surface2);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    #chatInput:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .form-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field label { font-size: 0.9rem; color: var(--text-muted); }
+    .field input {
+      padding: 10px 12px;
+      border: 1px solid var(--surface2);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .checkbox-row input { width: 18px; height: 18px; }
+    .result-box {
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .result-box.pass { background: rgba(34, 197, 94, 0.12); border-color: var(--success); }
+    .result-box.fail { background: rgba(239, 68, 68, 0.12); border-color: var(--error); }
+    .result-box h4 { margin-bottom: 8px; font-size: 1rem; }
+    .result-box ul { margin-left: 20px; margin-top: 8px; }
+    .result-box .refs { margin-top: 12px; font-size: 0.85rem; color: var(--text-muted); }
+    .loading { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>AI Trợ lý Pháp lý & Đấu thầu</h1>
+      <p>Tra cứu văn bản pháp luật, TCVN — Kiểm tra tuân thủ PCCC và mật độ xây dựng</p>
+    </header>
+
+    <div class="tabs">
+      <button type="button" data-tab="chat" class="active">Tra cứu Chat</button>
+      <button type="button" data-tab="pccc">Kiểm tra PCCC</button>
+      <button type="button" data-tab="density">Mật độ xây dựng</button>
+    </div>
+
+    <div id="panelChat" class="panel active">
+      <div class="chat-box">
+        <div id="chatMessages"></div>
+        <div class="chat-input-wrap">
+          <input type="text" id="chatInput" placeholder="Nhập câu hỏi tra cứu (VD: lối thoát nạn, mật độ xây dựng, hợp đồng...) " />
+          <button type="button" id="chatSend" class="btn btn-primary">Gửi</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="panelPccc" class="panel">
+      <div class="form-card">
+        <h3>Thông số hồ sơ thiết kế (PCCC)</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label>Số tầng</label>
+            <input type="number" id="pccc_so_tang" min="0" value="4" />
+          </div>
+          <div class="field">
+            <label>Chiều cao (m)</label>
+            <input type="number" id="pccc_chieu_cao" min="0" step="0.1" value="16" />
+          </div>
+          <div class="field">
+            <label>Diện tích sàn mỗi tầng (m²)</label>
+            <input type="number" id="pccc_dien_tich_san" min="0" value="350" />
+          </div>
+          <div class="field">
+            <label>Số lối thoát nạn</label>
+            <input type="number" id="pccc_so_loi_thoat" min="0" value="2" />
+          </div>
+          <div class="field">
+            <label>Chiều rộng lối thoát (m)</label>
+            <input type="number" id="pccc_chieu_rong_loi" min="0" step="0.1" value="1.2" />
+          </div>
+          <div class="field">
+            <label>Khoảng cách xa nhất đến cửa thoát (m)</label>
+            <input type="number" id="pccc_khoang_cach" min="0" step="0.1" value="18" />
+          </div>
+          <div class="field checkbox-row">
+            <input type="checkbox" id="pccc_sprinkler" />
+            <label for="pccc_sprinkler">Có hệ thống sprinkler</label>
+          </div>
+        </div>
+        <button type="button" id="pcccSubmit" class="btn btn-primary" style="margin-top:16px">Kiểm tra tuân thủ PCCC</button>
+        <div id="pcccResult" class="result-box" style="display:none"></div>
+      </div>
+    </div>
+
+    <div id="panelDensity" class="panel">
+      <div class="form-card">
+        <h3>Thông số mật độ xây dựng</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label>Diện tích lô đất (m²)</label>
+            <input type="number" id="density_lot" min="0.01" step="0.01" value="300" />
+          </div>
+          <div class="field">
+            <label>Diện tích xây dựng (m²)</label>
+            <input type="number" id="density_xay_dung" min="0" value="180" />
+          </div>
+          <div class="field">
+            <label>Tổng diện tích sàn (m²)</label>
+            <input type="number" id="density_tong_san" min="0" value="720" />
+          </div>
+          <div class="field">
+            <label>Số tầng</label>
+            <input type="number" id="density_so_tang" min="0" value="4" />
+          </div>
+        </div>
+        <button type="button" id="densitySubmit" class="btn btn-primary" style="margin-top:16px">Kiểm tra mật độ</button>
+        <div id="densityResult" class="result-box" style="display:none"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/api/config"></script>
+  <script>
+    var API = typeof window.__LEGAL_AI_API__ !== 'undefined' ? window.__LEGAL_AI_API__ : '';
+    function addChatMsg(role, text, sources) {
+      const el = document.getElementById('chatMessages');
+      const msg = document.createElement('div');
+      msg.className = 'msg ' + role;
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.textContent = text;
+      msg.appendChild(bubble);
+      if (sources && sources.length) {
+        const src = document.createElement('div');
+        src.className = 'source';
+        src.textContent = 'Nguồn: ' + sources.map(s => s.source).filter(Boolean).join(', ');
+        msg.appendChild(src);
+      }
+      el.appendChild(msg);
+      el.scrollTop = el.scrollHeight;
+    }
+    document.getElementById('chatSend').addEventListener('click', async () => {
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+      addChatMsg('user', text);
+      input.value = '';
+      const btn = document.getElementById('chatSend');
+      btn.disabled = true;
+      try {
+        const res = await fetch(API + '/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || res.statusText);
+        addChatMsg('bot', data.answer, data.sources || []);
+      } catch (e) {
+        addChatMsg('bot', 'Lỗi: ' + e.message, []);
+      }
+      btn.disabled = false;
+    });
+    document.getElementById('chatInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('chatSend').click();
+    });
+
+    document.querySelectorAll('.tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel' + btn.dataset.tab.charAt(0).toUpperCase() + btn.dataset.tab.slice(1)).classList.add('active');
+      });
+    });
+
+    document.getElementById('pcccSubmit').addEventListener('click', async () => {
+      const payload = {
+        so_tang: parseInt(document.getElementById('pccc_so_tang').value) || 0,
+        chieu_cao_m: parseFloat(document.getElementById('pccc_chieu_cao').value) || 0,
+        dien_tich_san_moi_tang_m2: parseFloat(document.getElementById('pccc_dien_tich_san').value) || 0,
+        so_loi_thoat: parseInt(document.getElementById('pccc_so_loi_thoat').value) || 0,
+        chieu_rong_loi_thoat_m: parseFloat(document.getElementById('pccc_chieu_rong_loi').value) || 0,
+        khoang_cach_xa_nhat_den_cua_thoat_m: parseFloat(document.getElementById('pccc_khoang_cach').value) || 0,
+        co_sprinkler: document.getElementById('pccc_sprinkler').checked,
+        loai_nha: 'nhà ở'
+      };
+      const resultEl = document.getElementById('pcccResult');
+      resultEl.style.display = 'block';
+      resultEl.className = 'result-box loading';
+      resultEl.innerHTML = 'Đang kiểm tra...';
+      try {
+        const res = await fetch(API + '/api/compliance/pccc', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || res.statusText);
+        resultEl.className = 'result-box ' + (data.passed ? 'pass' : 'fail');
+        resultEl.innerHTML = '<h4>' + data.message + '</h4><ul>' + (data.details || []).map(d => '<li>' + d + '</li>').join('') + '</ul>' +
+          (data.references && data.references.length ? '<div class="refs">Tham khảo: ' + data.references.map(r => r.source).join(', ') + '</div>' : '');
+      } catch (e) {
+        resultEl.className = 'result-box fail';
+        resultEl.innerHTML = '<h4>Lỗi</h4><p>' + e.message + '</p>';
+      }
+    });
+
+    document.getElementById('densitySubmit').addEventListener('click', async () => {
+      const payload = {
+        dien_tich_lot_m2: parseFloat(document.getElementById('density_lot').value) || 0,
+        dien_tich_xay_dung_m2: parseFloat(document.getElementById('density_xay_dung').value) || 0,
+        tong_dien_tich_san_m2: parseFloat(document.getElementById('density_tong_san').value) || 0,
+        so_tang: parseInt(document.getElementById('density_so_tang').value) || 0
+      };
+      const resultEl = document.getElementById('densityResult');
+      resultEl.style.display = 'block';
+      resultEl.className = 'result-box loading';
+      resultEl.innerHTML = 'Đang kiểm tra...';
+      try {
+        const res = await fetch(API + '/api/compliance/density', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || res.statusText);
+        resultEl.className = 'result-box ' + (data.passed ? 'pass' : 'fail');
+        resultEl.innerHTML = '<h4>' + data.message + '</h4><ul>' + (data.details || []).map(d => '<li>' + d + '</li>').join('') + '</ul>' +
+          (data.references && data.references.length ? '<div class="refs">Tham khảo: ' + data.references.map(r => r.source).join(', ') + '</div>' : '');
+      } catch (e) {
+        resultEl.className = 'result-box fail';
+        resultEl.innerHTML = '<h4>Lỗi</h4><p>' + e.message + '</p>';
+      }
+    });
+  </script>
+</body>
+</html>

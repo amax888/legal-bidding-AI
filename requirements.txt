@@ -1,0 +1,23 @@
+# AI Trợ lý Pháp lý & Đấu thầu - Dependencies
+# Khuyến nghị: Python 3.10, 3.11 hoặc 3.12 (3.13 cần pydantic >= 2.10)
+
+# Web API
+fastapi>=0.109
+uvicorn[standard]>=0.27
+
+# RAG & Embeddings (faiss-cpu: không cần Visual C++ trên Windows)
+faiss-cpu>=1.7
+sentence-transformers>=2.3
+# chromadb>=0.4,<0.5   # Tùy chọn: bỏ comment và cài C++ Build Tools nếu muốn dùng ChromaDB
+
+# Document processing
+pypdf>=4.0
+python-docx>=1.1
+
+# LLM (optional: thêm OPENAI_API_KEY vào .env để trả lời chat hay hơn)
+openai>=1.12
+
+# Utils
+python-multipart>=0.0.9
+pydantic>=2.6,<3
+pydantic-settings>=2.1

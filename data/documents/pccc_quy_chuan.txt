@@ -1,0 +1,32 @@
+QUY CHUẨN KỸ THUẬT QUỐC GIA VỀ PCCC - TRÍCH YẾU THAM KHẢO
+QCVN 06:2021/BXD - An toàn cháy cho nhà và công trình
+
+1. Phân loại nhà và công trình theo cấp chịu lửa
+- Cấp I, II: Kết cấu chịu lửa không dưới 2,0 giờ (bê tông, gạch).
+- Cấp III: Không dưới 1,0 giờ.
+- Cấp IV, V: Gỗ và vật liệu dễ cháy có giới hạn chịu lửa theo quy định.
+
+2. Khoảng cách an toàn phòng cháy
+- Giữa các nhà có mái dễ cháy: không nhỏ hơn 6 m.
+- Giữa nhà có mái không cháy với nhà có mái cháy: không nhỏ hơn 8 m.
+- Nhà cấp I, II với nhà cấp IV, V: không nhỏ hơn 10 m.
+
+3. Lối thoát nạn
+- Chiều rộng lối thoát nạn (hành lang, cầu thang): tối thiểu 1,2 m cho công trình công cộng; 1,0 m cho nhà ở.
+- Số lối thoát: nhà từ 3 tầng trở lên hoặc diện tích sàn một tầng trên 300 m² phải có ít nhất 2 lối thoát nạn độc lập.
+- Khoảng cách từ điểm xa nhất trong phòng đến cửa thoát nạn: không quá 30 m (phòng có hệ thống chữa cháy tự động) hoặc không quá 20 m (phòng không có).
+
+4. Hệ thống chữa cháy
+- Nhà cao từ 28 m trở lên (tính từ mặt đất đến sàn tầng cao nhất): bắt buộc có hệ thống chữa cháy tự động (sprinkler) trong các không gian có nguy cơ cháy.
+- Nhà có tổng diện tích sàn một tầng từ 1.500 m² trở lên: phải có hệ thống chữa cháy tự động hoặc chữa cháy vách tường theo quy định.
+- Bình chữa cháy xách tay: đặt tại vị trí dễ thấy, dễ lấy; khoảng cách di chuyển không quá 20 m.
+
+5. Chiều cao và diện tích
+- Nhà ở riêng lẻ (cấp IV, V) cao không quá 3 tầng hoặc chiều cao đến 11 m.
+- Nhà công cộng (trường học, bệnh viện, chung cư): phải đáp ứng cấp chịu lửa và lối thoát nạn theo bảng quy định tương ứng chiều cao và diện tích.
+
+6. Vật liệu thoát nạn
+- Cầu thang bộ thoát nạn phải bằng vật liệu không cháy; không bố trí vật dễ cháy trong buồng thang.
+- Cửa thoát nạn mở theo hướng thoát ra ngoài; không khóa khi có người trong công trình.
+
+Nguồn: QCVN 06:2021/BXD (trích dẫn có chỉnh lý để minh họa). Cần đối chiếu văn bản gốc khi áp dụng.
